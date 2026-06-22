@@ -1,0 +1,15 @@
+# Optional local environment — runs the Vite dev server in a container.
+# Usage: docker compose up
+# (Not required: `npm run dev` works directly on the host.)
+services:
+  web:
+    image: node:24-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
