@@ -210,10 +210,10 @@ export const profile = {
     headline: "Vamos construir algo?",
     subtext: "Aberto a conversas sobre tecnologia, IA, vendas e produtos que importam.",
     links: [
-      { label: "GitHub", href: "https://github.com/", handle: "@guilherme", icon: "github" as const },
-      { label: "LinkedIn", href: "https://linkedin.com/", handle: "Guilherme Nery", icon: "linkedin" as const },
-      { label: "Email", href: "mailto:guilhermenerycalixto18@gmail.com", handle: "guilhermenerycalixto18@gmail.com", icon: "mail" as const },
-      { label: "WhatsApp", href: "https://wa.me/", handle: "Mensagem direta", icon: "whatsapp" as const },
+      { label: "GitHub", href: "https://github.com/GuiYoungDev", handle: "@GuiYoungDev", icon: "github" as const },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/guilhermenerycalixto/", handle: "in/guilhermenerycalixto", icon: "linkedin" as const },
+      { label: "Email", href: "mailto:guiandbusiness@gmail.com", handle: "guiandbusiness@gmail.com", icon: "mail" as const },
+      { label: "WhatsApp", href: "https://wa.me/5511920617793", handle: "+55 11 92061-7793", icon: "whatsapp" as const },
     ],
   },
 
