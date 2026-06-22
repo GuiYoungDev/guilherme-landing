@@ -108,7 +108,7 @@ src/
 ├─ App.tsx                 # composição da página
 └─ index.css              # design tokens (Tailwind v4 @theme)
 public/
-└─ favicon.svg · og-image.svg · _redirects
+└─ favicon.svg · og-image.svg
 ```
 
 ## ✦ Deploy — Cloudflare Pages
