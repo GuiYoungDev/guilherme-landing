@@ -80,7 +80,7 @@ export function Laptop(props: GroupProps) {
   return (
     <group {...props}>
       {/* base / chassis */}
-      <RoundedBox args={[BASE_W, BASE_H, BASE_D]} radius={0.06} smoothness={5}>
+      <RoundedBox args={[BASE_W, BASE_H, BASE_D]} radius={0.06} smoothness={4}>
         <meshStandardMaterial {...aluminum} />
       </RoundedBox>
 
@@ -91,7 +91,7 @@ export function Laptop(props: GroupProps) {
       </mesh>
 
       {/* keys — instanced for performance, faint amber backlight */}
-      <Instances range={keys.length} castShadow>
+      <Instances range={keys.length}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial
           color="#0e0e13"
@@ -139,7 +139,7 @@ export function Laptop(props: GroupProps) {
         <RoundedBox
           args={[LID_W, LID_H, LID_T]}
           radius={0.05}
-          smoothness={5}
+          smoothness={4}
           position={[0, LID_H / 2, -LID_T / 2]}
         >
           <meshStandardMaterial {...aluminumDark} />

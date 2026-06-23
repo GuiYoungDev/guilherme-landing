@@ -34,14 +34,17 @@ estudante de ADS, mergulhado em LLMs, APIs, automações e análise de marketpla
 
 ## ✦ Stack
 
-| Camada       | Tecnologia                                  |
-| ------------ | ------------------------------------------- |
-| Framework    | **React 18** + **Vite 6**                   |
-| Linguagem    | **TypeScript** (modo strict)                |
-| Estilo       | **Tailwind CSS v4** (config via `@theme`)   |
-| Animação     | **Framer Motion**                           |
-| Backend      | nenhum — 100% estático                      |
-| Deploy       | **Cloudflare Pages**                        |
+| Camada          | Tecnologia                                                              |
+| --------------- | ---------------------------------------------------------------------- |
+| Framework       | **React 18** + **Vite 6**                                              |
+| Linguagem       | **TypeScript** (modo strict)                                           |
+| Estilo          | **Tailwind CSS v4** (config via `@theme` no CSS)                       |
+| Animação (UI)   | **Framer Motion** (reveals, marquee, micro-interações)                 |
+| 3D / WebGL      | **Three.js** + **React Three Fiber** + **@react-three/drei**          |
+| Build/Bundler   | **Vite** + `@tailwindcss/vite` (code-splitting via `React.lazy`)       |
+| Backend         | nenhum — 100% estático                                                  |
+| Deploy          | **Cloudflare Pages** (`npm run build` → `dist`)                        |
+| Ambiente        | **Node.js 18+** · **Git** · **Docker Compose** (opcional)             |
 
 ## ✦ Seções
 
@@ -54,6 +57,50 @@ estudante de ADS, mergulhado em LLMs, APIs, automações e análise de marketpla
 7. **Personal DNA** — música (jazz/blues/classic rock) + basquete/NBA
 8. **Vision** — manifesto sobre tecnologia com impacto social
 9. **Contato** — GitHub, LinkedIn, Email, WhatsApp
+
+## ✦ O laptop 3D (WebGL)
+
+O destaque do hero é um **laptop 3D interativo** renderizado em **WebGL**, no
+mesmo espírito do crachá/lanyard do template que inspirou o projeto — mas
+**autoral e mais enxuto**.
+
+**Como funciona**
+
+- **React Three Fiber** (`@react-three/fiber`) monta a cena 3D num `<canvas>`;
+  **drei** (`@react-three/drei`) fornece os helpers.
+- O laptop é **geometria procedural** (`RoundedBox` para chassi e tampa, teclado
+  chiclet via `Instances`, trackpad, dobradiça, pés) — **sem modelo `.glb`
+  externo**, sem licença de asset.
+- A **tela** é um `CanvasTexture`: um `<canvas>` 2D desenha a grade de logos da
+  stack com glow e é usado como `emissiveMap`, então os logos "emitem luz".
+- **Interação:** `PresentationControls` (arrastar para girar) + `Float`
+  (flutuação sutil quando parado).
+- **Iluminação:** `Environment` com `Lightformer` (reflexos no alumínio sem
+  baixar HDR externo).
+- **Acessibilidade & fallback:** carregado via `React.lazy` (code-split do
+  Three.js); enquanto carrega — ou se o dispositivo não tiver WebGL — exibe um
+  *poster* estático com os mesmos logos (`role="img"` + `aria-label`).
+
+> Referência: o template original usa R3F + **@react-three/rapier** (física do
+> cordão) + **meshline** + um modelo `.glb`. Aqui trocamos a física e o modelo
+> por **geometria procedural** + rotação por gesto — mais leve e fácil de manter.
+
+**Performance (mira em 60 / 120 / 144Hz)**
+
+O R3F renderiza no `requestAnimationFrame`, então acompanha o refresh do monitor.
+Para segurar o *frame budget*:
+
+- **`<PerformanceMonitor>`** ajusta o **pixel ratio em runtime** (sobe quando
+  estável, cai quando o FPS oscila) — evita travar em telas de alta densidade.
+- **Contact shadow** é renderizada **uma vez** (`frames={1}`), não a cada frame.
+- **Teclas instanciadas** (1 draw call), `Environment` em resolução baixa e
+  geometria com poucos segmentos.
+- O chunk do Three.js é **carregado sob demanda**, mantendo o load inicial leve.
+- Respeita `prefers-reduced-motion` nas animações de UI.
+
+Arquivos: [`src/components/three/`](src/components/three/) — `LaptopScene.tsx`
+(canvas/perf), `Laptop.tsx` (geometria), `useScreenTexture.ts` (tela),
+`logos.ts` (stack), `LaptopShowcase.tsx` (lazy + fallback).
 
 ## ✦ Rodando localmente
 
