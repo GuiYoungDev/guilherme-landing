@@ -55,7 +55,7 @@ export function LaptopShowcase() {
     <div
       role="img"
       aria-label={`Laptop 3D interativo exibindo a stack: ${names}`}
-      className="relative h-[340px] w-full select-none sm:h-[440px] lg:h-[560px]"
+      className="relative h-[320px] w-full select-none sm:h-[400px] lg:h-[480px]"
     >
       <WebGLBoundary>
         <Suspense fallback={<Poster loading />}>
