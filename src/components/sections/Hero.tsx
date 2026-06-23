@@ -76,9 +76,58 @@ export function Hero() {
           className="relative min-w-0 -mx-2 sm:mx-0"
         >
           <LaptopShowcase />
-          <p className="mt-1 text-center text-xs uppercase tracking-[0.2em] text-faint">
-            Arraste para girar
-          </p>
+          <div className="mt-1 flex items-center justify-center gap-3 text-faint">
+            <motion.svg
+              viewBox="0 0 40 24"
+              fill="none"
+              className="h-5 w-7 text-amber/70"
+              animate={{ x: [0, -4, 0] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              aria-hidden
+            >
+              <path
+                d="M34 7Q17 1 8 17"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M8 17 16 15M8 17 9.5 9"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </motion.svg>
+
+            <span className="text-xs uppercase tracking-[0.2em]">Arraste para girar</span>
+
+            <motion.svg
+              viewBox="0 0 40 24"
+              fill="none"
+              className="h-5 w-7 text-amber/70"
+              style={{ scaleX: -1 }}
+              animate={{ x: [0, -4, 0] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              aria-hidden
+            >
+              <path
+                d="M34 7Q17 1 8 17"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M8 17 16 15M8 17 9.5 9"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </motion.svg>
+          </div>
         </motion.div>
       </div>
 
